@@ -1,16 +1,10 @@
 const express = require('express');
 const router = express.Router();
+const { countWords } = require('../services/wordCountService');
 
-// Controller function to count words
-const countWords = (req, res) => {
-    const text = req.body.text;
-    if (typeof text !== 'string') {
-        return res.status(400).json({ error: 'Invalid input, expected a string.' });
-    }
-    const wordCount = text.trim().split(/\s+/).filter(Boolean).length;
-    res.json({ wordCount });
-};
-
-router.post('/count', countWords);
+router.post('/count', (req, res) => {
+    const result = countWords(req.body.text);
+    res.json(result);
+});
 
 module.exports = router;
