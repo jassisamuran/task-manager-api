@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+from utils.text_analysis import count_vowels_consonants_digits
 
 app = Flask(__name__)
 
@@ -9,7 +10,8 @@ def word_count():
         return jsonify({'error': 'No text provided'}), 400
     text = data['text']
     word_count = len(text.split())
-    return jsonify({'word_count': word_count})
+    no_of_vowels, no_of_consonants, no_of_digits = count_vowels_consonants_digits(text)
+    return jsonify({'word_count': word_count, 'no_of_vowels': no_of_vowels, 'no_of_consonants': no_of_consonants, 'no_of_digits': no_of_digits})
 
 if __name__ == '__main__':
     app.run(debug=True)

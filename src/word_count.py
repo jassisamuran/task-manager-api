@@ -1,3 +1,5 @@
+from utils.text_analysis import count_vowels_consonants_digits
+
 def count_words(input_string):
     """
     Count the number of words in a given string.
