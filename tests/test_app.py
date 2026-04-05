@@ -10,7 +10,7 @@ class WordCountTestCase(unittest.TestCase):
     def test_word_count(self):
         response = self.app.post('/word_count', json={'text': 'Hello world'})
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(json.loads(response.data), {'word_count': 2})
+        self.assertEqual(json.loads(response.data), {'word_count': 2, 'vowel_count': 3, 'consonant_count': 7, 'digit_count': 0})
 
     def test_no_text(self):
         response = self.app.post('/word_count', json={})

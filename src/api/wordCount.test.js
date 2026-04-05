@@ -31,4 +31,17 @@ describe('POST /api/wordcount', () => {
         expect(response.status).toBe(400);
         expect(response.body.message).toBe('Text is required.');
     });
+
+    it('should return the count of vowels, digits, and consonants', async () => {
+        const response = await request(app)
+            .post('/api/wordcount')
+            .send({ text: 'Hello World 123' });
+        expect(response.status).toBe(200);
+        expect(response.body).toEqual({
+            wordCount: 3,
+            vowelCount: 5,
+            consonantCount: 7,
+            digitCount: 3
+        });
+    });
 });
