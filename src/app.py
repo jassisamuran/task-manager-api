@@ -9,7 +9,10 @@ def word_count():
         return jsonify({'error': 'No text provided'}), 400
     text = data['text']
     word_count = len(text.split())
-    return jsonify({'word_count': word_count})
+    vowel_count = sum(1 for char in text if char in 'aeiouAEIOU')
+    consonant_count = sum(1 for char in text if char.isalpha() and char not in 'aeiouAEIOU')
+    digit_count = sum(1 for char in text if char.isdigit())
+    return jsonify({'word_count': word_count, 'vowel_count': vowel_count, 'consonant_count': consonant_count, 'digit_count': digit_count})
 
 if __name__ == '__main__':
     app.run(debug=True)
