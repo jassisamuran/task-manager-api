@@ -1,9 +1,10 @@
 const express = require('express');
 const wordCount = require('../api/wordCount');
+const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-router.post('/wordcount', (req, res) => {
+router.post('/wordcount', authMiddleware, (req, res) => {
     try {
         const count = wordCount(req.body);
         res.json({ wordCount: count });
