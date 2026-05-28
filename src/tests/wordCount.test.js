@@ -20,6 +20,6 @@ describe('POST /api/count', () => {
             .post('/api/count')
             .send({ text: 123 });
         expect(response.status).toBe(400);
-        expect(response.body.error).toBe('Invalid input, expected a string.');
+        expect(response.body.error).toBe('Invalid input: text field is required and must be a string.');
     });
 });
