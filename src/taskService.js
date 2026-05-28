@@ -42,6 +42,11 @@ class TaskService {
     task.completed = true
     return task
   }
+
+  notifyLiveUpdate(data) {
+    // This method will be called to notify live updates
+    // Implementation will depend on the live update mechanism (e.g., WebSocket)
+  }
 }
 
 module.exports = new TaskService()

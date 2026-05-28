@@ -19,6 +19,7 @@ exports.createTask = (req, res) => {
   try {
     const { title, description } = req.body
     const task = taskService.createTask(title, description)
+    taskService.notifyLiveUpdate(task); // Notify live updates
     res.status(201).json(task)
   } catch (err) {
     res.status(400).json({ error: err.message })
@@ -28,6 +29,7 @@ exports.createTask = (req, res) => {
 exports.updateTask = (req, res) => {
   try {
     const task = taskService.updateTask(req.params.id, req.body)
+    taskService.notifyLiveUpdate(task); // Notify live updates
     res.json(task)
   } catch (err) {
     res.status(404).json({ error: err.message })
@@ -46,6 +48,7 @@ exports.deleteTask = (req, res) => {
 exports.completeTask = (req, res) => {
   try {
     const task = taskService.completeTask(req.params.id)
+    taskService.notifyLiveUpdate(task); // Notify live updates
     res.json(task)
   } catch (err) {
     res.status(404).json({ error: err.message })
